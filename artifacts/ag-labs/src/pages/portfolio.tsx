@@ -361,7 +361,7 @@ export default function PortfolioPage() {
                 nossos modelos e experimentos de site.
               </p>
               <a
-                href="https://templates.aglabs.ia.br/"
+                href="https://templates.aglabs.ia.br/templates"
                 target="_blank"
                 rel="noopener noreferrer"
               >
