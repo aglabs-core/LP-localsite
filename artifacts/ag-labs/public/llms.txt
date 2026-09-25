@@ -1,31 +1,29 @@
-# AG LABS — Sites Profissionais para Negócios Locais
+# AG LABS — Desenvolvimento web sob medida
 
-> A AG LABS é uma agência digital que cria sites profissionais para negócios locais em tempo recorde — bonitos, rápidos, otimizados para o Google e com botão de WhatsApp. Domínio próprio incluso e protótipo entregue em até 48h, sem compromisso.
+> Sites com identidade, conteúdo claro e um caminho fácil até o cliente. Cada projeto recebe uma proposta própria, com escopo, prazo e investimento definidos após uma conversa.
 
-## O que oferecemos
-- Site profissional no ar, com design moderno e responsivo (perfeito no celular).
-- Domínio próprio (.com.br) incluso.
-- Otimização para aparecer no Google (busca local).
-- Botão direto para o WhatsApp e mapa de localização do Google no site.
-- Suporte incluso e 1 personalização por mês.
+## Serviços
+- Sites institucionais para apresentar a empresa e seus serviços.
+- Landing pages para campanhas, produtos e ofertas.
+- Lojas online e projetos digitais sob medida.
+- Renovação de sites existentes.
 
-## Preços
-- Setup único: R$497 (site completo com domínio incluso).
-- Hospedagem & suporte: R$97/mês.
+## Orçamento
+Não há preço único ou pacote fechado nesta página. O valor depende das páginas, funcionalidades, conteúdo e integrações do projeto. Domínio, hospedagem e manutenção são definidos na proposta.
+O formulário prepara uma mensagem com o nome do negócio, o tipo de projeto e um resumo opcional. O visitante revisa e envia a mensagem pelo WhatsApp.
 
-## Como funciona
-1. Você manda as informações (nome do negócio, serviços, fotos — ou a gente busca).
-2. A gente cria em tempo recorde e você aprova o layout antes de ir ao ar.
-3. Site no ar, otimizado para aparecer no Google e atrair clientes.
+## Processo
+1. Conversa sobre o negócio, objetivos e escopo; proposta com valor e prazo.
+2. Organização do conteúdo, criação do site, prévia e ajustes combinados.
+3. Revisão, aprovação, publicação e orientação dos próximos passos.
 
-## Por que ter um site
-97% das pessoas pesquisam no Google antes de comprar localmente. Sem site, o negócio fica invisível para esses clientes; com site, aparece 24h por dia e ganha credibilidade.
+## Portfólio
+A página apresenta sites, produtos próprios e demonstrações da AG LABS, incluindo Gabrielle Garcia, Barber Pro, AG Books e AG LABS.
 
 ## Contato
 - WhatsApp: https://wa.me/5564993259857
-- Site institucional: https://aglabs.ia.br
+- Site institucional: https://aglabs.ia.br/
 - Instagram: https://www.instagram.com/ag_labs/
-- LinkedIn: https://www.linkedin.com/company/ag-labs
 
-## Sobre a AG LABS
-Mais de 3 anos de experiência, 100+ automações entregues e 200+ ferramentas dominadas. Nascemos para tirar o operacional das costas das equipes, entregando automações e presença digital que realmente funcionam.
+## Sobre
+A AG LABS desenvolve sites, aplicações e automações. Sediada em Rio Verde, Goiás, atende projetos em todo o Brasil.

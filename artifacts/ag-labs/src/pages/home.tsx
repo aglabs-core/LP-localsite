@@ -1,170 +1,323 @@
-import { HeroParallax } from "@/components/HeroParallax";
+import {
+  ArrowDown,
+  ArrowUpRight,
+} from "lucide-react";
+import { Header } from "@/components/Header";
+import { Hero } from "@/components/Hero";
 import { Portfolio } from "@/components/Portfolio";
-import { AboutAgLabs } from "@/components/AboutAgLabs";
-import { Pricing } from "@/components/Pricing";
-import { CinematicFooter } from "@/components/CinematicFooter";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Zap, Search, Globe, ChevronRight } from "lucide-react";
+import { Quote } from "@/components/Quote";
+import { Footer } from "@/components/Footer";
+import { faqs } from "@/data/content";
 
-function HowItWorks() {
-  return (
-    <section className="py-24 bg-background">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold font-display text-white mb-4">Como funciona</h2>
-          <p className="text-muted-foreground text-xl">Simples. Rápido. Sem complicação.</p>
-        </div>
-        
-        <div className="grid md:grid-cols-3 gap-8 relative">
-          {/* Decorative line connecting steps */}
-          <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-px bg-border -z-10"></div>
-          
-          <div className="text-center relative">
-            <div className="w-24 h-24 mx-auto bg-card border border-border rounded-full flex items-center justify-center text-2xl font-bold text-primary mb-6 shadow-xl relative z-10">
-              01
-            </div>
-            <h3 className="text-xl font-bold text-white mb-3">Você manda as infos</h3>
-            <p className="text-muted-foreground">Nome do negócio, serviços, fotos (ou a gente busca).</p>
-          </div>
-          
-          <div className="text-center relative">
-            <div className="w-24 h-24 mx-auto bg-card border border-primary rounded-full flex items-center justify-center text-2xl font-bold text-primary mb-6 shadow-[0_0_30px_-5px_hsl(var(--primary)/0.3)] relative z-10">
-              <Zap className="w-8 h-8" />
-            </div>
-            <h3 className="text-xl font-bold text-white mb-3">A gente cria em tempo recorde</h3>
-            <p className="text-muted-foreground">Você aprova o layout antes de ir ao ar.</p>
-          </div>
-          
-          <div className="text-center relative">
-            <div className="w-24 h-24 mx-auto bg-card border border-border rounded-full flex items-center justify-center text-2xl font-bold text-primary mb-6 shadow-xl relative z-10">
-              03
-            </div>
-            <h3 className="text-xl font-bold text-white mb-3">Site no ar</h3>
-            <p className="text-muted-foreground">Otimizado para aparecer no Google e atrair clientes.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function SocialProof() {
-  return (
-    <section className="py-24 bg-card border-y border-border">
-      <div className="max-w-7xl mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold font-display text-white mb-12">Por que isso importa</h2>
-        
-        <div className="max-w-4xl mx-auto">
-          <div className="text-7xl md:text-9xl font-black font-display text-primary mb-6 tracking-tighter">
-            97%
-          </div>
-          <h3 className="text-2xl md:text-4xl font-bold text-white mb-6">
-            das pessoas pesquisam no Google antes de comprar localmente.
-          </h3>
-          <p className="text-xl text-muted-foreground">
-            Sem site, você é invisível pra esses clientes. <br className="hidden md:block"/>
-            Com site, você aparece 24h por dia.
-          </p>
-        </div>
-        
-        <div className="grid md:grid-cols-2 gap-8 mt-16 max-w-3xl mx-auto">
-          <div className="bg-background p-6 rounded-2xl border border-border flex items-start text-left">
-            <Search className="w-8 h-8 text-primary mr-4 flex-shrink-0 mt-1" />
-            <div>
-              <h4 className="font-bold text-white text-lg mb-2">Busca Local</h4>
-              <p className="text-muted-foreground text-sm">Quando alguém pesquisa "advogado perto de mim", seu concorrente com site leva o cliente.</p>
-            </div>
-          </div>
-          <div className="bg-background p-6 rounded-2xl border border-border flex items-start text-left">
-            <Globe className="w-8 h-8 text-primary mr-4 flex-shrink-0 mt-1" />
-            <div>
-              <h4 className="font-bold text-white text-lg mb-2">Credibilidade</h4>
-              <p className="text-muted-foreground text-sm">Um site profissional passa segurança. O cliente sabe que a empresa existe de verdade.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function FAQ() {
-  return (
-    <section className="py-24 bg-background">
-      <div className="max-w-3xl mx-auto px-4">
-        <h2 className="text-3xl md:text-5xl font-bold font-display text-white mb-12 text-center">Perguntas frequentes</h2>
-        
-        <Accordion type="single" collapsible className="w-full">
-          <AccordionItem value="item-1" className="border-border">
-            <AccordionTrigger className="text-left text-lg font-bold text-white hover:text-primary hover:no-underline data-[state=open]:text-primary py-6">
-              Já tenho Instagram. Preciso de site?
-            </AccordionTrigger>
-            <AccordionContent className="text-muted-foreground text-base leading-relaxed pb-6">
-              Instagram some do feed em horas. Site fica no Google pra sempre. O Instagram é ótimo para relacionamento, mas quando alguém precisa resolver um problema (comprar, contratar, agendar), ela procura no Google.
-            </AccordionContent>
-          </AccordionItem>
-          
-          <AccordionItem value="item-2" className="border-border">
-            <AccordionTrigger className="text-left text-lg font-bold text-white hover:text-primary hover:no-underline data-[state=open]:text-primary py-6">
-              Achei caro. Vale a pena?
-            </AccordionTrigger>
-            <AccordionContent className="text-muted-foreground text-base leading-relaxed pb-6">
-              Dá cerca de R$16 por dia. Menos que um café para ter presença profissional online. Pense no site como seu melhor funcionário: trabalha 24h, nunca tira folga e atende o cliente na hora que ele precisa.
-            </AccordionContent>
-          </AccordionItem>
-          
-          <AccordionItem value="item-3" className="border-border">
-            <AccordionTrigger className="text-left text-lg font-bold text-white hover:text-primary hover:no-underline data-[state=open]:text-primary py-6">
-              Não entendo nada de tecnologia. Como faz?
-            </AccordionTrigger>
-            <AccordionContent className="text-muted-foreground text-base leading-relaxed pb-6">
-              Você não precisa entender nada. A gente cuida de absolutamente tudo do zero: registro do domínio, hospedagem, design, textos, botão de WhatsApp e colocar no Google.
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-      </div>
-    </section>
-  );
-}
-
-function CTAFinal() {
-  return (
-    <section className="py-32 bg-primary relative overflow-hidden">
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-      <div className="max-w-4xl mx-auto px-4 relative z-10 text-center">
-        <h2 className="text-4xl md:text-6xl font-black font-display text-primary-foreground mb-8 tracking-tight">
-          Peça agora e receba seu protótipo em até 48h — sem compromisso.
-        </h2>
-        
-        <a 
-          href="https://wa.me/5564993259857"
-          className="inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-primary bg-primary-foreground rounded-lg hover:scale-105 transition-transform shadow-2xl"
-        >
-          Quero ver meu site <ChevronRight className="ml-2 w-6 h-6" />
-        </a>
-        
-        <p className="mt-6 text-primary-foreground/80 font-medium">
-          Vagas limitadas para este mês. Fale direto com a equipe.
-        </p>
-      </div>
-    </section>
-  );
-}
+const features = [
+  {
+    icon: "/images/benefits/responsive.webp",
+    title: "Funciona em qualquer tela",
+    text: "Navegação clara no celular, tablet e computador.",
+  },
+  {
+    icon: "/images/benefits/brand-design.webp",
+    title: "Design da sua marca",
+    text: "Um visual criado para o seu negócio, sem cara de modelo pronto.",
+  },
+  {
+    icon: "/images/benefits/search.webp",
+    title: "Estrutura para o Google",
+    text: "Páginas e conteúdos organizados para os buscadores.",
+  },
+  {
+    icon: "/images/benefits/contact.webp",
+    title: "Contato sem complicação",
+    text: "WhatsApp e formulários fáceis de encontrar e usar.",
+  },
+  {
+    icon: "/images/benefits/commerce.webp",
+    title: "Sua loja online",
+    text: "Catálogo, carrinho e pagamentos conforme sua operação.",
+  },
+  {
+    icon: "/images/benefits/domain.webp",
+    title: "Domínio e publicação",
+    text: "Ajuda com endereço, hospedagem e lançamento.",
+  },
+  {
+    icon: "/images/benefits/security.webp",
+    title: "Segurança na conexão",
+    text: "HTTPS e cuidado com formulários e integrações.",
+  },
+  {
+    icon: "/images/benefits/support.webp",
+    title: "Suporte para continuar",
+    text: "Orientação na entrega e opções de manutenção.",
+  },
+];
+const steps = [
+  {
+    title: "Conversa e orçamento",
+    text: "Entendemos seu objetivo e enviamos uma proposta com as páginas, funcionalidades, investimento e prazo.",
+  },
+  {
+    title: "Conteúdo e criação",
+    text: "Reunimos os materiais e desenvolvemos o visual e a navegação para apresentar seu negócio.",
+  },
+  {
+    title: "Prévia e aprovação",
+    text: "Você navega pelo site, avalia o resultado e participa da rodada de ajustes prevista no escopo.",
+  },
+  {
+    title: "Publicação e entrega",
+    text: "Revisamos o funcionamento, publicamos após sua aprovação e orientamos o uso e os próximos passos.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="bg-background">
-      <div className="relative z-10 bg-background">
-        <HeroParallax />
+    <>
+      <a className="skip-link" href="#conteudo">
+        Pular para o conteúdo
+      </a>
+      <Header />
+      <main id="conteudo" tabIndex={-1}>
+        <Hero />
+        <section
+          className="services-section"
+          id="solucoes"
+          aria-labelledby="services-title"
+        >
+          <div className="section-shell">
+            <div className="services-intro">
+              <p className="eyebrow">01 / Uma presença que faz sentido</p>
+              <h2 id="services-title">
+                A primeira impressão
+                <br />
+                <span>precisa dizer algo.</span>
+              </h2>
+              <p>
+                Mais que estar na internet: uma página que deixa claro o que
+                você faz, mostra o valor do seu trabalho e facilita o próximo
+                passo de quem chegou até você.
+              </p>
+            </div>
+            <div className="services-layout">
+              <figure className="service-visual">
+                <div className="service-visual-stage">
+                  <span className="service-visual-label">PROJETO REAL / 01</span>
+                  <div className="service-browser">
+                    <div className="service-browser-bar" aria-hidden="true">
+                      <span />
+                      <span />
+                      <span />
+                      <p>gabinutri.com.br</p>
+                    </div>
+                    <img
+                      src="/images/lp-nutri.png"
+                      alt="Projeto de site profissional desenvolvido para Gabrielle Garcia"
+                      width="1912"
+                      height="947"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+                <figcaption>
+                  <strong>Gabrielle Garcia</strong>
+                  <span>Site profissional · Saúde e bem-estar</span>
+                </figcaption>
+              </figure>
+              <div className="services-copy">
+                <p className="services-copy-kicker">O que muda na prática</p>
+                <h3>
+                  Design bonito é o começo. A experiência precisa trabalhar por
+                  você.
+                </h3>
+                <div className="service-outcomes">
+                  <div>
+                    <span>01</span>
+                    <div>
+                      <h4>Entender em segundos</h4>
+                      <p>Serviços, diferenciais e mensagem organizados para quem chega.</p>
+                    </div>
+                  </div>
+                  <div>
+                    <span>02</span>
+                    <div>
+                      <h4>Reconhecer a sua marca</h4>
+                      <p>Visual e conteúdo criados para o seu negócio, sem cara de modelo pronto.</p>
+                    </div>
+                  </div>
+                  <div>
+                    <span>03</span>
+                    <div>
+                      <h4>Saber como avançar</h4>
+                      <p>Contato, agendamento ou compra no lugar certo da jornada.</p>
+                    </div>
+                  </div>
+                </div>
+                <a className="services-link" href="#orcamento">
+                  Vamos construir o seu{" "}
+                  <ArrowUpRight size={18} aria-hidden="true" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          className="features-section section-shell"
+          aria-labelledby="features-title"
+        >
+          <div className="center-heading">
+            <p className="eyebrow">Visual, conteúdo e funcionamento</p>
+            <h2 id="features-title">
+              O que podemos fazer <span>pelo seu site</span>
+            </h2>
+            <p>
+              Recursos que facilitam a vida de quem visita e de quem está à
+              frente do negócio.
+            </p>
+          </div>
+          <div className="features-grid">
+            {features.map(({ icon, title, text }) => (
+              <article className="feature" key={title}>
+                <div className="feature-icon">
+                  <img src={icon} alt="" width="256" height="256" loading="lazy" />
+                </div>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+          <div className="features-action">
+            <p>
+              As funcionalidades e os serviços são definidos na proposta do seu
+              projeto.
+            </p>
+            <a className="button" href="#orcamento">
+              Montar meu projeto <ArrowUpRight size={18} aria-hidden="true" />
+            </a>
+          </div>
+        </section>
+        <section
+          className="process-section"
+          id="processo"
+          aria-labelledby="process-title"
+        >
+          <div className="section-shell">
+            <div className="center-heading">
+              <p className="eyebrow">Você participa de cada etapa</p>
+              <h2 id="process-title">
+                Como funciona a <span>criação do seu site</span>
+              </h2>
+              <p>
+                Do primeiro contato até a publicação, você sabe o que vem a
+                seguir.
+              </p>
+            </div>
+            <ol className="process-grid">
+              {steps.map((step, index) => (
+                <li key={step.title}>
+                  <span className="step-number">0{index + 1}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </li>
+              ))}
+            </ol>
+            <div className="scope-note">
+              <div>
+                <h3>Cada projeto tem o seu investimento.</h3>
+                <p>
+                  Quantidade de páginas, conteúdo e integrações fazem diferença.
+                  Por isso, a proposta é feita para o que você precisa
+                  construir.
+                </p>
+              </div>
+              <a className="text-link" href="#orcamento">
+                Pedir um orçamento <ArrowUpRight size={19} aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+        </section>
         <Portfolio />
-        <HowItWorks />
-        <SocialProof />
-        <Pricing />
-        <FAQ />
-        <AboutAgLabs />
-        <CTAFinal />
-      </div>
-      <CinematicFooter />
-    </div>
+        <section className="agency-section" aria-labelledby="agency-title">
+          <div className="section-shell agency-layout">
+            <div className="agency-copy">
+              <p className="eyebrow">Conheça a AG LABS</p>
+              <h2 id="agency-title">
+                Experiência em sites.
+                <br />
+                <span>Visão de negócio.</span>
+              </h2>
+              <p>
+                Desenvolvemos sites, aplicações e automações. Também criamos
+                nossos próprios produtos digitais, lidando com os desafios de
+                colocar uma ideia no ar e fazê-la funcionar no dia a dia.
+              </p>
+              <p>
+                Essa experiência entra no seu projeto: da apresentação da
+                empresa às integrações que conectam o site à operação.
+              </p>
+              <a
+                className="text-link"
+                href="https://aglabs.ia.br/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Saiba mais sobre a AG LABS{" "}
+                <ArrowUpRight size={18} aria-hidden="true" />
+              </a>
+            </div>
+            <div className="agency-capabilities">
+              <article>
+                <span>01</span>
+                <div>
+                  <h3>Design e desenvolvimento</h3>
+                  <p>Conteúdo, interface e tecnologia trabalhando juntos.</p>
+                </div>
+              </article>
+              <article>
+                <span>02</span>
+                <div>
+                  <h3>Integrações e automações</h3>
+                  <p>Conexões com as ferramentas que a sua empresa usa.</p>
+                </div>
+              </article>
+              <article>
+                <span>03</span>
+                <div>
+                  <h3>Evolução do projeto</h3>
+                  <p>Novas páginas e recursos conforme o negócio cresce.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section
+          className="faq-section section-shell"
+          id="faq"
+          aria-labelledby="faq-title"
+        >
+          <div className="center-heading">
+            <p className="eyebrow">Antes de contratar</p>
+            <h2 id="faq-title">
+              Perguntas <span>frequentes</span>
+            </h2>
+            <p>
+              Entenda como planejamos, desenvolvemos e entregamos seu projeto.
+            </p>
+          </div>
+          <div className="faq-list">
+            {faqs.map((faq) => (
+              <details key={faq.question}>
+                <summary>
+                  {faq.question}
+                  <ArrowDown size={18} aria-hidden="true" />
+                </summary>
+                <p>{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+        <Quote />
+      </main>
+      <Footer />
+    </>
   );
 }
