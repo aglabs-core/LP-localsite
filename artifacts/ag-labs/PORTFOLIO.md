@@ -2,7 +2,9 @@
 
 O site principal mostra quatro trabalhos. A página `/portfolio` mostra uma seleção curta, organizada por Sites, Landing Pages, Plataformas, Lojas online, IA aplicada e Blogs. O catálogo VibeKit mantém seus próprios modelos e demonstrações; não copie todos para esta página.
 
-As páginas de link na bio ficam em um capítulo próprio no final do portfólio, apresentado em formato de celular. Edite `portfolioBioProjects` em `src/data/portfolio.ts` para atualizar os dois exemplos sem duplicá-los no filtro de trabalhos. O encerramento leva ao formulário de orçamento da página principal.
+As páginas de link na bio e a vitrine móvel ficam em um capítulo próprio no final do portfólio, apresentado em formato de celular. Edite `portfolioBioProjects` em `src/data/portfolio.ts` para atualizar os quatro exemplos sem duplicá-los no filtro de trabalhos. Descreva a vitrine de produtos como tal, pois ela tem busca e catálogo. O encerramento leva ao formulário de orçamento da página principal.
+
+A arte de compartilhamento da home está em `public/opengraph.jpg`; sua composição editável está em `scripts/og-source.html`. Para gerar outra versão, copie o HTML temporariamente para `public/`, abra-o em 1280 × 720 e exporte a captura como JPEG. Os metadados OG e Twitter em `index.html` apontam para essa imagem.
 
 ## Para adicionar ou atualizar um trabalho
 

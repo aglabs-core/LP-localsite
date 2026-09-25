@@ -1,4 +1,10 @@
-/* Inter is loaded in index.html. */
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('/fonts/inter-latin.woff2') format('woff2');
+}
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -269,6 +275,17 @@ h2 {
   overflow: hidden;
   background: #ffffff;
   padding-block: 82px 68px;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 44% 31% at 23% 65%, #c9d9ff8a, transparent 85%),
+    radial-gradient(ellipse 43% 32% at 78% 56%, #8db2ff8c, transparent 82%),
+    radial-gradient(ellipse 36% 29% at 53% 94%, #3469eb38, transparent 82%);
 }
 .hero-aurora {
   position: absolute;

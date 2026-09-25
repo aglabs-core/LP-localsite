@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { portfolioProjects, type PortfolioProject } from "@/data/portfolio";
 
@@ -12,10 +12,39 @@ const featuredProjects = ["ag-labs-app", "viajeki", "members"]
   );
 
 export function Hero() {
+  const [showAurora, setShowAurora] = useState(false);
+
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 761px)");
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let timer: ReturnType<typeof setTimeout> | undefined;
+
+    const syncAurora = () => {
+      if (timer) clearTimeout(timer);
+      if (!desktop.matches || motion.matches) {
+        setShowAurora(false);
+        return;
+      }
+      if (document.readyState !== "complete") return;
+      timer = setTimeout(() => setShowAurora(true), 2500);
+    };
+    if (document.readyState === "complete") syncAurora();
+    else window.addEventListener("load", syncAurora, { once: true });
+    desktop.addEventListener("change", syncAurora);
+    motion.addEventListener("change", syncAurora);
+
+    return () => {
+      window.removeEventListener("load", syncAurora);
+      desktop.removeEventListener("change", syncAurora);
+      motion.removeEventListener("change", syncAurora);
+      if (timer) clearTimeout(timer);
+    };
+  }, []);
+
   return (
     <section className="hero" aria-labelledby="hero-title">
       <Suspense fallback={null}>
-        <AuroraBackground />
+        {showAurora && <AuroraBackground />}
       </Suspense>
       <div className="hero-copy section-shell">
         <p className="eyebrow">Design e desenvolvimento web</p>

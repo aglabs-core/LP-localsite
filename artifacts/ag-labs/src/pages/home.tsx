@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   ArrowDown,
   ArrowUpRight,
@@ -71,6 +72,15 @@ const steps = [
 ];
 
 export default function Home() {
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (!id) return;
+    const frame = requestAnimationFrame(() => {
+      document.getElementById(id)?.scrollIntoView({ block: "start" });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
   return (
     <>
       <a className="skip-link" href="#conteudo">
@@ -110,7 +120,7 @@ export default function Home() {
                       <p>gabinutri.com.br</p>
                     </div>
                     <img
-                      src="/images/lp-nutri.png"
+                      src="/images/lp-nutri.webp"
                       alt="Projeto de site profissional desenvolvido para Gabrielle Garcia"
                       width="1912"
                       height="947"

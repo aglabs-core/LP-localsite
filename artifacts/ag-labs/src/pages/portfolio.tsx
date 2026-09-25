@@ -75,9 +75,9 @@ function WorkCard({
           href={project.url}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={`Abrir projeto ${project.title}, em nova aba`}
         >
           {content}
+          <span className="sr-only">, abre em nova aba</span>
         </a>
       ) : (
         <div>{content}</div>
@@ -91,6 +91,16 @@ export default function PortfolioPage() {
     PortfolioCategory | "todos"
   >("todos");
   const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (!id) return;
+    const frame = requestAnimationFrame(() => {
+      document.getElementById(id)?.scrollIntoView({ block: "start" });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
   const categoryProjects =
     activeCategory === "todos"
       ? portfolioProjects
@@ -156,7 +166,7 @@ export default function PortfolioPage() {
               <h1 id="portfolio-page-title" aria-label="Portfólio">
                 <span aria-hidden="true">Portf</span>
                 <span className="pf-globe" aria-hidden="true">
-                  <img src="/images/hands-globe.webp" alt="" />
+                  <img src="/images/hands-globe.webp" alt="" width="900" height="900" />
                 </span>
                 <span aria-hidden="true">lio</span>
               </h1>
@@ -232,9 +242,10 @@ export default function PortfolioPage() {
               className="pf-portrait"
               src="/images/antonio-pencil-portrait.webp"
               alt="Ilustração a lápis de Antonio Garcia, criada a partir de uma foto dele"
-              width="1774"
-              height="887"
-              fetchPriority="high"
+              width="1400"
+              height="700"
+              loading="lazy"
+              decoding="async"
             />
             <span className="pf-photo-note" aria-hidden="true">
               feito com intenção.
@@ -376,8 +387,8 @@ export default function PortfolioPage() {
               </h2>
               <p>
                 Um cartão de visita digital reúne os destinos importantes da
-                marca em uma página feita para o celular. Dois projetos, duas
-                identidades e um caminho claro para quem chega pelas redes.
+                  marca em uma página feita para o celular. Nesta seleção, cada
+                  projeto resolve isso de um jeito: perfil, produtos ou vitrine.
               </p>
               <a className="pf-inline-link" href="/#orcamento">
                 Quero uma página assim
@@ -391,8 +402,7 @@ export default function PortfolioPage() {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Abrir ${project.label} de ${project.title}, em nova aba`}
-                  key={project.url}
+                    key={project.url}
                 >
                   <div className="pf-bio-device">
                     <img
@@ -404,13 +414,14 @@ export default function PortfolioPage() {
                       decoding="async"
                     />
                   </div>
-                  <div className="pf-bio-caption">
+                    <div className="pf-bio-caption">
                     <span>
                       <strong>{project.title}</strong>
                       <small>{project.label}</small>
                     </span>
                     <ArrowUpRight size={19} aria-hidden="true" />
-                  </div>
+                    </div>
+                    <span className="sr-only">, abre em nova aba</span>
                 </a>
               ))}
             </div>

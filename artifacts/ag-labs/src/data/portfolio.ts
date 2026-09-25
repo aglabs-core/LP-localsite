@@ -96,7 +96,7 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "landing-pages",
     categoryLabel: "Saúde e bem-estar",
     format: "Site profissional",
-    image: "/images/lp-nutri.png",
+    image: "/images/lp-nutri.webp",
     url: "https://gabinutri.com.br/",
   },
   {
@@ -148,5 +148,19 @@ export const portfolioBioProjects = [
     description: "Uma apresentação compacta entre tecnologia e música.",
     image: "/images/bio-antonio.webp",
     url: "https://bio.agmusic.ia.br/",
+  },
+  {
+    title: "Antonio · Loja Labs",
+    label: "Bio de produtos",
+    description: "Uma apresentação pessoal com acesso direto aos produtos digitais.",
+    image: "/images/bio-lojalabs.webp",
+    url: "https://bio.lojalabs.com.br/",
+  },
+  {
+    title: "Achadinhos da Amazon",
+    label: "Vitrine de produtos",
+    description: "Curadoria de produtos com busca e caminhos diretos para a compra.",
+    image: "/images/bio-afag.webp",
+    url: "https://afag.shop/",
   },
 ];

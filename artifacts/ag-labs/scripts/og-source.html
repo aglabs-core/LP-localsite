@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <style>
+    @font-face{font-family:Inter;src:url('/fonts/inter-latin.woff2') format('woff2');font-weight:400 900;font-display:block}
+    *{box-sizing:border-box}
+    html,body{width:1280px;height:720px;margin:0;overflow:hidden}
+    body{font-family:Inter,Arial,sans-serif;color:#161a25;background:#f9fbff}
+    .canvas{position:relative;width:1280px;height:720px;overflow:hidden;background:linear-gradient(135deg,#fff 0%,#f8faff 54%,#eaf0ff 100%)}
+    .canvas:before{content:"";position:absolute;width:900px;height:670px;right:-120px;top:110px;border-radius:50%;background:radial-gradient(ellipse,#8eb3ff7d 0%,#c6d8ff64 36%,transparent 72%);filter:blur(12px)}
+    .canvas:after{content:"";position:absolute;inset:19px;border:1px solid #d9e2f5;pointer-events:none}
+    .bar{position:absolute;top:0;left:0;right:0;height:8px;background:#2454e6}
+    .brand{position:absolute;left:67px;top:53px;display:flex;align-items:center;gap:9px;color:#101929;font-size:29px;font-weight:800;letter-spacing:-.06em}
+    .brand img{width:50px;height:50px;object-fit:contain}
+    .brand span{margin-left:4px}
+    .eyebrow{position:absolute;left:68px;top:157px;font-size:15px;font-weight:700;letter-spacing:.19em;color:#2454e6}
+    h1{position:absolute;left:63px;top:204px;width:660px;margin:0;font-size:77px;font-weight:800;line-height:1.035;letter-spacing:-.07em}
+    h1 span{display:block;color:#2454e6}
+    .description{position:absolute;left:68px;top:444px;width:550px;margin:0;font-size:24px;line-height:1.46;color:#4d596c;letter-spacing:-.025em}
+    .footer{position:absolute;left:68px;bottom:72px;display:flex;align-items:center;gap:18px;font-size:17px;font-weight:600;color:#45536d}
+    .footer i{width:40px;height:3px;background:#2454e6}
+    .right-glow{position:absolute;right:35px;top:118px;width:510px;height:480px;border:1px solid #8aa9ee57;border-radius:50%;transform:rotate(-20deg)}
+    .site-card{position:absolute;overflow:hidden;background:#fff;border:8px solid #fff;border-radius:13px;box-shadow:0 32px 70px #13317935,0 7px 16px #193a7840}
+    .site-card .chrome{height:23px;display:flex;align-items:center;gap:6px;padding-left:11px;background:#f2f5fb}
+    .site-card .chrome b{display:block;width:6px;height:6px;border-radius:50%;background:#c4cddb}
+    .site-card img{width:100%;height:calc(100% - 23px);object-fit:cover;object-position:top}
+    .card-back{right:71px;top:127px;width:378px;height:228px;transform:rotate(9deg)}
+    .card-front{right:81px;top:300px;width:492px;height:292px;transform:rotate(-5deg)}
+    .blue-chip{position:absolute;right:32px;bottom:61px;width:125px;height:48px;border-radius:24px;background:#2454e6;color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;box-shadow:0 13px 28px #2454e650}
+  </style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="bar"></div>
+    <div class="brand"><img src="/android-chrome-192x192.png" alt="" /><span>LABS</span></div>
+    <div class="eyebrow">DESIGN E DESENVOLVIMENTO WEB</div>
+    <h1>Um site à altura <span>do seu negócio.</span></h1>
+    <p class="description">Design com identidade. Experiências que aproximam clientes.</p>
+    <div class="footer"><i></i> lp.aglabs.ia.br</div>
+    <div class="right-glow"></div>
+    <div class="site-card card-back"><div class="chrome"><b></b><b></b><b></b></div><img src="/images/members-home.webp" alt="" /></div>
+    <div class="site-card card-front"><div class="chrome"><b></b><b></b><b></b></div><img src="/images/viajeki-home.webp" alt="" /></div>
+    <div class="blue-chip">Projetos reais ↗</div>
+  </div>
+</body>
+</html>
