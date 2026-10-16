@@ -55,7 +55,7 @@ function WorkCard({
           height="950"
           style={{ objectPosition: project.imagePosition ?? "top" }}
         />
-        <span>0{index + 1}</span>
+        <span>{String(index + 1).padStart(2, "0")}</span>
       </div>
       <div className="pf-project-caption">
         <div>
