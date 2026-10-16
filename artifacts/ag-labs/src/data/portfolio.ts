@@ -63,6 +63,15 @@ export const portfolioProjects: PortfolioProject[] = [
     featured: true,
   },
   {
+    id: "mecard",
+    title: "MeCard",
+    category: "plataformas",
+    categoryLabel: "Cartões digitais · Produto AG LABS",
+    format: "Plataforma web",
+    image: "/images/mecard-home.webp",
+    url: "https://mecard.com.br/",
+  },
+  {
     id: "ag-labs-app-lp",
     title: "AG LABS App — LP",
     category: "landing-pages",
@@ -107,6 +116,15 @@ export const portfolioProjects: PortfolioProject[] = [
     format: "Plataforma web",
     image: "/images/barber-pro.png",
     url: "https://barberias.com.br/",
+  },
+  {
+    id: "birolo-silva",
+    title: "Birolo & Silva Contabilidade",
+    category: "sites",
+    categoryLabel: "Contabilidade",
+    format: "Site institucional",
+    image: "/images/birolo-silva-home.webp",
+    url: "https://biroloesilvacontabilidade.com.br/",
   },
   {
     id: "ag-labs",
