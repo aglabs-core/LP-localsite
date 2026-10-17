@@ -43,7 +43,6 @@ export default function PortfolioPage() {
   const [activeCategory, setActiveCategory] = useState<
     PortfolioCategory | "todos"
   >("todos");
-  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const id = decodeURIComponent(window.location.hash.slice(1));
@@ -63,21 +62,7 @@ export default function PortfolioPage() {
       : listedProjects.filter(
           (project) => project.category === activeCategory,
         );
-  const normalizedQuery = searchQuery
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .trim();
-  const visibleProjects = normalizedQuery
-    ? categoryProjects.filter((project) =>
-        [project.title, project.category, project.categoryLabel, project.format]
-          .join(" ")
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
-          .toLowerCase()
-          .includes(normalizedQuery),
-      )
-    : categoryProjects;
+  const visibleProjects = categoryProjects;
 
   const contentsItems: {
     key: string;
@@ -93,7 +78,6 @@ export default function PortfolioPage() {
       note: category.note,
       href: "#trabalhos",
       onClick: () => {
-        setSearchQuery("");
         setActiveCategory(category.id);
       },
     })),
@@ -169,8 +153,7 @@ export default function PortfolioPage() {
             </SelectionFrame>
             <form
               className="pf-search-bar"
-              role="search"
-              onSubmit={(event) => {
+                            onSubmit={(event) => {
                 event.preventDefault();
                 document.getElementById("trabalhos")?.scrollIntoView({
                   behavior: "smooth",
@@ -178,13 +161,9 @@ export default function PortfolioPage() {
               }}
             >
               <Search size={17} aria-hidden="true" />
-              <input
-                type="search"
-                aria-label="Buscar projetos"
-                placeholder="Uma coleção de projetos com identidade..."
-                value={searchQuery}
-                onChange={(event) => setSearchQuery(event.target.value)}
-              />
+              <span className="pf-search-placeholder">
+                Uma coleção de projetos com identidade...
+              </span>
               <span className="pf-search-caret" aria-hidden="true" />
               <button type="submit">
                 Buscar <ArrowUpRight size={16} aria-hidden="true" />
@@ -352,13 +331,13 @@ export default function PortfolioPage() {
             {visibleProjects.length ? (
               <div aria-live="polite">
                 <ProjectStack
-                  key={`${activeCategory}-${normalizedQuery}`}
+                  key={activeCategory}
                   projects={visibleProjects}
                 />
               </div>
             ) : (
               <p className="pf-empty" role="status">
-                Nenhum projeto encontrado. Tente outra busca ou categoria.
+                Nenhum projeto nesta categoria ainda.
               </p>
             )}
             <div className="pf-templates-link">
@@ -379,12 +358,33 @@ export default function PortfolioPage() {
         </section>
 
         <section
+          className="pf-folio pf-noise-dark"
+          aria-labelledby="pf-clients-sep-title"
+        >
+          <div className="pf-folio-inner">
+            <p className="pf-section-label">04 / ÚLTIMOS CLIENTES</p>
+            <SelectionFrame className="pf-folio-frame">
+              <h2 id="pf-clients-sep-title">
+                Novos <span>Clientes</span>
+              </h2>
+            </SelectionFrame>
+            <p>
+              Marcas que confiaram no nosso trabalho e já estão com o projeto
+              no ar.
+            </p>
+            <a href="#clientes" className="pf-folio-scroll">
+              Ver as entregas <ArrowDown size={17} aria-hidden="true" />
+            </a>
+          </div>
+        </section>
+
+        <section
           className="pf-work pf-paper pf-clients"
           id="clientes"
           aria-labelledby="pf-clients-title"
         >
           <div className="pf-work-inner">
-            <p className="pf-section-label">04 / ÚLTIMOS CLIENTES</p>
+            <p className="pf-section-label">ENTREGAS · 2026</p>
             <div className="pf-work-heading">
               <h2 id="pf-clients-title">
                 Entregas recentes<span>.</span>

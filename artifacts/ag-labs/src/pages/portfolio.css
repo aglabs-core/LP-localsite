@@ -216,6 +216,16 @@
   border-color: #799cff;
   box-shadow: 0 0 0 3px rgba(72, 112, 230, 0.17);
 }
+.pf-search-placeholder {
+  flex: 1;
+  min-width: 0;
+  color: #c6c6c6;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+}
 .pf-search-bar input {
   flex: 1;
   min-width: 0;
@@ -1270,6 +1280,3 @@
   }
 }
 
-.pf-clients {
-  padding-top: 0;
-}
