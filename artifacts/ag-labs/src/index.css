@@ -1259,7 +1259,7 @@ a.stack-card:hover .project-arrow {
     gap: 14px;
   }
   .stack-row {
-    top: 70px !important;
+    margin-bottom: 18px;
   }
   .project-meta {
     margin-top: 14px;

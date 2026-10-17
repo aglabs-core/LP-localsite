@@ -54,10 +54,13 @@ export default function PortfolioPage() {
     return () => cancelAnimationFrame(frame);
   }, []);
 
+  const listedProjects = portfolioProjects.filter(
+    (project) => !project.client,
+  );
   const categoryProjects =
     activeCategory === "todos"
-      ? portfolioProjects
-      : portfolioProjects.filter(
+      ? listedProjects
+      : listedProjects.filter(
           (project) => project.category === activeCategory,
         );
   const normalizedQuery = searchQuery
@@ -84,13 +87,7 @@ export default function PortfolioPage() {
     external?: boolean;
     onClick?: () => void;
   }[] = [
-    {
-      key: "clientes",
-      title: "Últimos clientes",
-      note: "Entregas recentes",
-      href: "#clientes",
-    },
-    ...portfolioCategories.map((category) => ({
+    ...portfolioCategories.slice(0, 3).map((category) => ({
       key: category.id,
       title: category.title,
       note: category.note,
@@ -100,6 +97,12 @@ export default function PortfolioPage() {
         setActiveCategory(category.id);
       },
     })),
+    {
+      key: "clientes",
+      title: "Últimos clientes",
+      note: "Entregas recentes",
+      href: "#clientes",
+    },
     {
       key: "bios",
       title: "Links na bio",
@@ -306,32 +309,12 @@ export default function PortfolioPage() {
         </section>
 
         <section
-          className="pf-work pf-paper pf-clients"
-          id="clientes"
-          aria-labelledby="pf-clients-title"
-        >
-          <div className="pf-work-inner">
-            <p className="pf-section-label">03 / ÚLTIMOS CLIENTES</p>
-            <div className="pf-work-heading">
-              <h2 id="pf-clients-title">
-                Entregas recentes<span>.</span>
-              </h2>
-              <p>
-                Os projetos mais novos que saíram do papel para marcas que
-                confiaram no nosso trabalho.
-              </p>
-            </div>
-            <ProjectStack projects={clientProjects} />
-          </div>
-        </section>
-
-        <section
           className="pf-work pf-paper"
           id="trabalhos"
           aria-labelledby="pf-work-title"
         >
           <div className="pf-work-inner">
-            <p className="pf-section-label">04 / SELEÇÃO</p>
+            <p className="pf-section-label">03 / SELEÇÃO</p>
             <div className="pf-work-heading">
               <h2 id="pf-work-title">
                 Projetos que falam por si<span>.</span>
@@ -352,7 +335,7 @@ export default function PortfolioPage() {
                 aria-pressed={activeCategory === "todos"}
                 onClick={() => setActiveCategory("todos")}
               >
-                Todos <span>{portfolioProjects.length}</span>
+                Todos <span>{listedProjects.length}</span>
               </button>
               {portfolioCategories.map((category) => (
                 <button
@@ -392,6 +375,26 @@ export default function PortfolioPage() {
                 <ArrowUpRight size={18} aria-hidden="true" />
               </a>
             </div>
+          </div>
+        </section>
+
+        <section
+          className="pf-work pf-paper pf-clients"
+          id="clientes"
+          aria-labelledby="pf-clients-title"
+        >
+          <div className="pf-work-inner">
+            <p className="pf-section-label">04 / ÚLTIMOS CLIENTES</p>
+            <div className="pf-work-heading">
+              <h2 id="pf-clients-title">
+                Entregas recentes<span>.</span>
+              </h2>
+              <p>
+                Os projetos mais novos que saíram do papel para marcas que
+                confiaram no nosso trabalho.
+              </p>
+            </div>
+            <ProjectStack projects={clientProjects} />
           </div>
         </section>
 

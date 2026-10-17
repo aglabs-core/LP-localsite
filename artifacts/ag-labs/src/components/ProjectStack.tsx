@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   motion,
   useReducedMotion,
@@ -54,12 +54,14 @@ function ProjectCard({ project }: { project: PortfolioProject }) {
 
 function StackRow({
   i,
+  top,
   projects,
   progress,
   range,
   targetScale,
 }: {
   i: number;
+  top: number;
   projects: PortfolioProject[];
   progress: MotionValue<number>;
   range: [number, number];
@@ -69,7 +71,7 @@ function StackRow({
   const scale = useTransform(progress, range, [1, targetScale]);
 
   return (
-    <div className="stack-row" style={{ top: `calc(90px + ${i * 18}px)` }}>
+    <div className="stack-row" style={{ top: top + i * 16 }}>
       <motion.div
         className="stack-row-inner"
         style={{ scale: reduceMotion ? 1 : scale }}
@@ -82,16 +84,34 @@ function StackRow({
   );
 }
 
-/** Two-column rows that stick and shrink as the next row scrolls over them. */
+const NARROW_QUERY = "(max-width: 760px)";
+
+function useIsNarrow() {
+  const [narrow, setNarrow] = useState(
+    () => typeof window !== "undefined" && window.matchMedia(NARROW_QUERY).matches,
+  );
+  useEffect(() => {
+    const media = window.matchMedia(NARROW_QUERY);
+    const update = () => setNarrow(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+  return narrow;
+}
+
+/** Two-column rows (one per row on phones) that stick and shrink as the next row scrolls over them. */
 export function ProjectStack({ projects }: { projects: PortfolioProject[] }) {
   const stackRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: stackRef,
     offset: ["start start", "end end"],
   });
+  const narrow = useIsNarrow();
+  const perRow = narrow ? 1 : 2;
   const rows: PortfolioProject[][] = [];
-  for (let i = 0; i < projects.length; i += 2) {
-    rows.push(projects.slice(i, i + 2));
+  for (let i = 0; i < projects.length; i += perRow) {
+    rows.push(projects.slice(i, i + perRow));
   }
 
   return (
@@ -103,6 +123,7 @@ export function ProjectStack({ projects }: { projects: PortfolioProject[] }) {
         <StackRow
           key={row[0].id}
           i={i}
+          top={narrow ? 72 : 90}
           projects={row}
           progress={scrollYProgress}
           range={[i / rows.length, 1]}

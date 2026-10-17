@@ -120,7 +120,7 @@ export default function Home() {
                       <p>gabinutri.com.br</p>
                     </div>
                     <img
-                      src="/images/lp-nutri.webp"
+                      src="/images/gabrielle-garcia-home.webp"
                       alt="Projeto de site profissional desenvolvido para Gabrielle Garcia"
                       width="1912"
                       height="947"
