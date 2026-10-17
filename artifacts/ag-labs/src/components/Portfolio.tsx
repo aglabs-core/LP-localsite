@@ -1,52 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
-import { homepageProjects, type PortfolioProject } from "@/data/portfolio";
-
-function ProjectCard({ project }: { project: PortfolioProject }) {
-  const content = (
-    <>
-      <div className="project-image">
-        <img
-          src={project.image}
-          alt={`Prévia de ${project.title}`}
-          loading="lazy"
-          decoding="async"
-          width="1920"
-          height="950"
-          style={{ objectPosition: project.imagePosition ?? "top" }}
-        />
-        {project.url ? (
-          <span className="project-arrow">
-            <ArrowUpRight size={23} aria-hidden="true" />
-          </span>
-        ) : null}
-      </div>
-      <div className="project-meta">
-        <div>
-          <p>{project.categoryLabel}</p>
-          <h3>{project.title}</h3>
-        </div>
-        <span>{project.format}</span>
-      </div>
-    </>
-  );
-
-  return (
-    <article className="project">
-      {project.url ? (
-        <a
-          href={project.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`Ver projeto ${project.title}, em nova aba`}
-        >
-          {content}
-        </a>
-      ) : (
-        <div>{content}</div>
-      )}
-    </article>
-  );
-}
+import { ProjectStack } from "@/components/ProjectStack";
+import { homepageProjects } from "@/data/portfolio";
 
 export function Portfolio() {
   return (
@@ -66,11 +20,7 @@ export function Portfolio() {
             transformar uma ideia em experiência digital.
           </p>
         </div>
-        <div className="project-grid">
-          {homepageProjects.map((project) => (
-            <ProjectCard project={project} key={project.id} />
-          ))}
-        </div>
+        <ProjectStack projects={homepageProjects} />
         <a className="portfolio-more-link" href="/portfolio">
           Ver mais projetos <ArrowUpRight size={20} aria-hidden="true" />
         </a>

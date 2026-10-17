@@ -12,6 +12,8 @@ export type PortfolioProject = {
   url?: string;
   homepage?: boolean;
   featured?: boolean;
+  /** Recent client work, shown in its own section on /portfolio. */
+  client?: boolean;
   imagePosition?: string;
 };
 
@@ -102,11 +104,12 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     id: "gabrielle-garcia",
     title: "Gabrielle Garcia",
-    category: "landing-pages",
+    category: "sites",
     categoryLabel: "Saúde e bem-estar",
     format: "Site profissional",
-    image: "/images/lp-nutri.webp",
+    image: "/images/gabrielle-garcia-home.webp",
     url: "https://gabinutri.com.br/",
+    client: true,
   },
   {
     id: "barber-pro",
@@ -125,6 +128,7 @@ export const portfolioProjects: PortfolioProject[] = [
     format: "Site institucional",
     image: "/images/birolo-silva-home.webp",
     url: "https://biroloesilvacontabilidade.com.br/",
+    client: true,
   },
   {
     id: "ag-labs",
@@ -146,6 +150,10 @@ export const portfolioProjects: PortfolioProject[] = [
     // Restore a link after verifying the current public destination.
   },
 ];
+
+export const clientProjects = portfolioProjects.filter(
+  (project) => project.client,
+);
 
 export const homepageProjects = portfolioProjects.filter(
   (project) => project.homepage,

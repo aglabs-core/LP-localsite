@@ -383,7 +383,7 @@
 .pf-contents-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 170px);
+  grid-auto-rows: 170px;
 }
 .pf-contents-item {
   position: relative;
@@ -415,6 +415,11 @@
   font-size: 29px;
   letter-spacing: -0.04em;
   line-height: 1.1;
+}
+.pf-contents-name svg {
+  display: inline-block;
+  vertical-align: 0.15em;
+  margin-left: 6px;
 }
 .pf-contents-note {
   position: absolute;
@@ -1049,7 +1054,7 @@
     padding: 12px 5px;
   }
   .pf-contents-grid {
-    grid-template-rows: repeat(2, 135px);
+    grid-auto-rows: 135px;
   }
   .pf-contents-item {
     padding: 10px;
@@ -1263,4 +1268,8 @@
   .pf-closing-action {
     transition: none;
   }
+}
+
+.pf-clients {
+  padding-bottom: 0;
 }
