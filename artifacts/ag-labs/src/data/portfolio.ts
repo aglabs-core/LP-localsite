@@ -70,7 +70,7 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "plataformas",
     categoryLabel: "Cartões digitais · Produto AG LABS",
     format: "Plataforma web",
-    image: "/images/mecard-home.webp",
+    image: "/images/mecard-app.webp",
     url: "https://mecard.com.br/",
   },
   {
@@ -172,7 +172,7 @@ export const portfolioBioProjects = [
     title: "Antonio Garcia",
     label: "Bio pessoal",
     description: "Uma apresentação compacta entre tecnologia e música.",
-    image: "/images/bio-antonio.webp",
+    image: "/images/bio-antonio-v2.webp",
     url: "https://bio.agmusic.ia.br/",
   },
   {
