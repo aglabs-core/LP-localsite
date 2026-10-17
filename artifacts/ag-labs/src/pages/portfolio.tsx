@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { ArrowDown, ArrowLeft, ArrowUpRight, Search } from "lucide-react";
+import { ProjectStack } from "@/components/ProjectStack";
 import {
+  clientProjects,
   portfolioBioProjects,
   portfolioCategories,
   portfolioProjects,
   type PortfolioCategory,
-  type PortfolioProject,
 } from "@/data/portfolio";
 import "./portfolio.css";
+
+const TEMPLATES_URL = "https://templates.aglabs.ia.br/templates";
 
 const corners = [
   "top-left",
@@ -36,56 +39,6 @@ function SelectionFrame({ children, className = "" }: SelectionFrameProps) {
   );
 }
 
-function WorkCard({
-  project,
-  index,
-}: {
-  project: PortfolioProject;
-  index: number;
-}) {
-  const content = (
-    <>
-      <div className="pf-project-image">
-        <img
-          src={project.image}
-          alt={`Prévia do projeto ${project.title}`}
-          loading="lazy"
-          decoding="async"
-          width="1920"
-          height="950"
-          style={{ objectPosition: project.imagePosition ?? "top" }}
-        />
-        <span>{String(index + 1).padStart(2, "0")}</span>
-      </div>
-      <div className="pf-project-caption">
-        <div>
-          <p>
-            {project.categoryLabel} / {project.format}
-          </p>
-          <h3>{project.title}</h3>
-        </div>
-        {project.url ? <ArrowUpRight size={20} aria-hidden="true" /> : null}
-      </div>
-    </>
-  );
-  return (
-    <article className="pf-project">
-      {project.url ? (
-        <a
-          href={project.url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {content}
-          <span className="sr-only">, abre em nova aba</span>
-        </a>
-      ) : (
-        <div>{content}</div>
-      )}
-    </article>
-  );
-}
-
 export default function PortfolioPage() {
   const [activeCategory, setActiveCategory] = useState<
     PortfolioCategory | "todos"
@@ -101,10 +54,13 @@ export default function PortfolioPage() {
     return () => cancelAnimationFrame(frame);
   }, []);
 
+  const listedProjects = portfolioProjects.filter(
+    (project) => !project.client,
+  );
   const categoryProjects =
     activeCategory === "todos"
-      ? portfolioProjects
-      : portfolioProjects.filter(
+      ? listedProjects
+      : listedProjects.filter(
           (project) => project.category === activeCategory,
         );
   const normalizedQuery = searchQuery
@@ -122,6 +78,45 @@ export default function PortfolioPage() {
           .includes(normalizedQuery),
       )
     : categoryProjects;
+
+  const contentsItems: {
+    key: string;
+    title: string;
+    note: string;
+    href: string;
+    external?: boolean;
+    onClick?: () => void;
+  }[] = [
+    ...portfolioCategories.slice(0, 3).map((category) => ({
+      key: category.id,
+      title: category.title,
+      note: category.note,
+      href: "#trabalhos",
+      onClick: () => {
+        setSearchQuery("");
+        setActiveCategory(category.id);
+      },
+    })),
+    {
+      key: "clientes",
+      title: "Últimos clientes",
+      note: "Entregas recentes",
+      href: "#clientes",
+    },
+    {
+      key: "bios",
+      title: "Links na bio",
+      note: "Páginas para o celular",
+      href: "#links-na-bio",
+    },
+    {
+      key: "templates",
+      title: "Mais trabalhos",
+      note: "Catálogo de templates",
+      href: TEMPLATES_URL,
+      external: true,
+    },
+  ];
 
   useEffect(() => {
     const previousTitle = document.title;
@@ -265,16 +260,26 @@ export default function PortfolioPage() {
             </h2>
             <SelectionFrame className="pf-contents-frame">
               <div className="pf-contents-grid">
-                {portfolioCategories.map((category, index) => (
+                {contentsItems.map((item, index) => (
                   <a
-                    href="#trabalhos"
-                    key={category.id}
-                    onClick={() => setActiveCategory(category.id)}
+                    href={item.href}
+                    key={item.key}
+                    onClick={item.onClick}
                     className="pf-contents-item"
+                    {...(item.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
                   >
-                    <span className="pf-contents-number">0{index + 1}</span>
-                    <span className="pf-contents-name">{category.title}</span>
-                    <span className="pf-contents-note">{category.note}</span>
+                    <span className="pf-contents-number">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="pf-contents-name">
+                      {item.title}
+                      {item.external ? (
+                        <ArrowUpRight size={16} aria-hidden="true" />
+                      ) : null}
+                    </span>
+                    <span className="pf-contents-note">{item.note}</span>
                   </a>
                 ))}
               </div>
@@ -330,7 +335,7 @@ export default function PortfolioPage() {
                 aria-pressed={activeCategory === "todos"}
                 onClick={() => setActiveCategory("todos")}
               >
-                Todos <span>{portfolioProjects.length}</span>
+                Todos <span>{listedProjects.length}</span>
               </button>
               {portfolioCategories.map((category) => (
                 <button
@@ -345,10 +350,11 @@ export default function PortfolioPage() {
               ))}
             </div>
             {visibleProjects.length ? (
-              <div className="pf-project-grid" aria-live="polite">
-                {visibleProjects.map((project, index) => (
-                  <WorkCard project={project} index={index} key={project.id} />
-                ))}
+              <div aria-live="polite">
+                <ProjectStack
+                  key={`${activeCategory}-${normalizedQuery}`}
+                  projects={visibleProjects}
+                />
               </div>
             ) : (
               <p className="pf-empty" role="status">
@@ -361,7 +367,7 @@ export default function PortfolioPage() {
                 nossos modelos e experimentos de site.
               </p>
               <a
-                href="https://templates.aglabs.ia.br/templates"
+                href={TEMPLATES_URL}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -373,13 +379,54 @@ export default function PortfolioPage() {
         </section>
 
         <section
+          className="pf-work pf-paper pf-clients"
+          id="clientes"
+          aria-labelledby="pf-clients-title"
+        >
+          <div className="pf-work-inner">
+            <p className="pf-section-label">04 / ÚLTIMOS CLIENTES</p>
+            <div className="pf-work-heading">
+              <h2 id="pf-clients-title">
+                Entregas recentes<span>.</span>
+              </h2>
+              <p>
+                Os projetos mais novos que saíram do papel para marcas que
+                confiaram no nosso trabalho.
+              </p>
+            </div>
+            <ProjectStack projects={clientProjects} />
+          </div>
+        </section>
+
+        <section
+          className="pf-folio pf-noise-dark"
+          aria-labelledby="pf-bios-sep-title"
+        >
+          <div className="pf-folio-inner">
+            <p className="pf-section-label">05 / LINKS NA BIO</p>
+            <SelectionFrame className="pf-folio-frame">
+              <h2 id="pf-bios-sep-title">
+                Bio <span>Links</span>
+              </h2>
+            </SelectionFrame>
+            <p>
+              Páginas compactas, pensadas para o celular, que levam o público
+              direto ao que importa.
+            </p>
+            <a href="#links-na-bio" className="pf-folio-scroll">
+              Ver as páginas <ArrowDown size={17} aria-hidden="true" />
+            </a>
+          </div>
+        </section>
+
+        <section
           className="pf-bios pf-paper"
           id="links-na-bio"
           aria-labelledby="pf-bios-title"
         >
           <div className="pf-bios-inner">
             <div className="pf-bios-copy">
-              <p className="pf-section-label">04 / LINKS NA BIO</p>
+              <p className="pf-section-label">PERFIS · PRODUTOS · VITRINES</p>
               <h2 id="pf-bios-title">
                 Pequenas páginas.
                 <br />
