@@ -172,7 +172,7 @@ export const portfolioBioProjects = [
     title: "Antonio Garcia",
     label: "Bio pessoal",
     description: "Uma apresentação compacta entre tecnologia e música.",
-    image: "/images/bio-antonio-v2.webp",
+    image: "/images/bio-antonio-v3.webp",
     url: "https://bio.agmusic.ia.br/",
   },
   {
