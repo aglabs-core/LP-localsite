@@ -40,7 +40,6 @@ export const portfolioProjects: PortfolioProject[] = [
     image: "/images/app-aglabs-interface.webp",
     url: "https://aglabs.app.br/",
     homepage: true,
-    featured: true,
   },
   {
     id: "viajeki",
@@ -75,12 +74,13 @@ export const portfolioProjects: PortfolioProject[] = [
   },
   {
     id: "ag-labs-app-lp",
-    title: "AG LABS App — LP",
+    title: "AG LABS App — Sobre",
     category: "landing-pages",
     categoryLabel: "IA generativa",
     format: "Landing page",
-    image: "/images/app-aglabs-landing.webp",
-    url: "https://lp.aglabs.app.br/",
+    image: "/images/app-aglabs-sobre.webp",
+    url: "https://aglabs.app.br/sobre",
+    featured: true,
     homepage: true,
   },
   {

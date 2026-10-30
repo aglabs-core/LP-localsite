@@ -4,7 +4,7 @@ import { portfolioProjects, type PortfolioProject } from "@/data/portfolio";
 
 const AuroraBackground = lazy(() => import("@/components/AuroraBackground"));
 
-const featuredProjects = ["ag-labs-app", "viajeki", "members"]
+const featuredProjects = ["ag-labs-app-lp", "viajeki", "members"]
   .map((id) => portfolioProjects.find((project) => project.id === id))
   .filter(
     (project): project is PortfolioProject =>

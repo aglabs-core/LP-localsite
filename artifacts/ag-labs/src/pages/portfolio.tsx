@@ -9,6 +9,7 @@ import {
   type PortfolioCategory,
 } from "@/data/portfolio";
 import "./portfolio.css";
+import { portfolioMeta, portfolioSeo } from "@/data/portfolio-seo";
 
 const TEMPLATES_URL = "https://templates.aglabs.ia.br/templates";
 
@@ -104,23 +105,31 @@ export default function PortfolioPage() {
 
   useEffect(() => {
     const previousTitle = document.title;
-    const description = document.querySelector<HTMLMetaElement>(
-      'meta[name="description"]',
-    );
-    const previousDescription = description?.content;
-    const canonical = document.querySelector<HTMLLinkElement>(
-      'link[rel="canonical"]',
-    );
+    const previousMeta = Object.entries(portfolioMeta).map(([key, content]) => {
+      const attribute = key.startsWith("og:") ? "property" : "name";
+      let element = document.head.querySelector<HTMLMetaElement>(
+        `meta[${attribute}="${key}"]`,
+      );
+      const created = !element;
+      if (!element) {
+        element = document.createElement("meta");
+        element.setAttribute(attribute, key);
+        document.head.appendChild(element);
+      }
+      const previous = element.content;
+      element.content = content;
+      return { element, previous, created };
+    });
+    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     const previousCanonical = canonical?.href;
-    document.title = "Portfólio de sites e projetos — AG LABS";
-    if (description)
-      description.content =
-        "Explore aplicativos, landing pages, plataformas, blogs e sites desenvolvidos pela AG LABS.";
-    if (canonical) canonical.href = "https://lp.aglabs.ia.br/portfolio";
+    document.title = portfolioSeo.title;
+    if (canonical) canonical.href = portfolioSeo.url;
     return () => {
       document.title = previousTitle;
-      if (description && previousDescription)
-        description.content = previousDescription;
+      previousMeta.forEach(({ element, previous, created }) => {
+        if (created) element.remove();
+        else element.content = previous;
+      });
       if (canonical && previousCanonical) canonical.href = previousCanonical;
     };
   }, []);
