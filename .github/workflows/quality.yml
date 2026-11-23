@@ -15,7 +15,7 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     defaults:
       run:
         working-directory: artifacts/ag-labs
@@ -36,3 +36,15 @@ jobs:
         run: |
           test -s dist/index.html
           test -s dist/portfolio/index.html
+      - name: Instalar pnpm fixado do workspace
+        working-directory: .
+        run: npm install --global pnpm@10.34.9
+      - name: Instalar workspace reproduzível
+        working-directory: .
+        run: pnpm install --frozen-lockfile
+      - name: Conferir tipos e builds de todos os pacotes
+        working-directory: .
+        run: pnpm run build
+        env:
+          PORT: '5174'
+          BASE_PATH: /
